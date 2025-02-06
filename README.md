@@ -1,8 +1,8 @@
-## Todo App
+# Todo App
 
 A simple Todo application built with Laravel and Vue.js.
 
-# Prerequisites
+## Prerequisites
 
 PHP >= 8.1
 Composer
@@ -10,37 +10,37 @@ Node.js & NPM
 MariaDB
 Laravel Valet (for Mac users)
 
-## Installation Steps
+# Installation Steps
 
-# Clone the repository
+## Clone the repository
 
 ```sh
 clone [https://github.com/adamkristopher/todo-app]
 cd todo-app
 ```
 
-# Install PHP dependencies
+## Install PHP dependencies
 
 ```sh
 composer install
 ```
 
-# Set up environment file
+## Set up environment file
 
 ```sh
 .env.example .env
 php artisan key:generate
 ```
 
-## Set up MariaDB
+# Set up MariaDB
 
-# Start MariaDB service
+## Start MariaDB service
 
 ```sh
 brew services start mariadb
 ```
 
-# Secure MariaDB installation
+## Secure MariaDB installation
 
 ```sh
 sudo mysql_secure_installation
@@ -48,34 +48,34 @@ sudo mysql_secure_installation
 
 # Follow the prompts:
 
-# - Set root password
+## - Set root password
 
-# - Remove anonymous users (Y)
+## - Remove anonymous users (Y)
 
-# - Disallow root login remotely (Y)
+## - Disallow root login remotely (Y)
 
-# - Remove test database (Y)
+## - Remove test database (Y)
 
-# - Reload privilege tables (Y)
+## - Reload privilege tables (Y)
 
 ## Create the database
 
-# Log into MariaDB
+## Log into MariaDB
 
 ```sh
 mysql -u root -p
 ```
 
-# Enter your password when prompted
+## Enter your password when prompted
 
-# Create database
+## Create database
 
 ```sh
 CREATE DATABASE todo_app;
 exit;
 ```
 
-# Update .env file with database credentials
+## Update .env file with database credentials
 
 ```sh
 DB_CONNECTION=mysql
@@ -86,39 +86,39 @@ DB_USERNAME=root
 DB_PASSWORD=your_password_here
 ```
 
-# Run migrations
+## Run migrations
 
 ```sh
 artisan migrate
 ```
 
-# Install NPM dependencies
+## Install NPM dependencies
 
 ```sh
 npm install
 ```
 
-# Start the development server
+## Start the development server
 
-# If using Valet
+## If using Valet
 
 ```sh
 valet park #in directory where project is.
 valet link
 ```
 
-# Or use Laravel's built-in server
+## Or use Laravel's built-in server
 
 ```sh
 php artisan serve
 ```
 
-# Your application should now be accessible at:
+## Your application should now be accessible at:
 
 Valet: http://todo-app.test
 Artisan serve: http://localhost:8000
 
-# Development
+## Development
 
 To start the Vite development server:
 
@@ -126,7 +126,7 @@ To start the Vite development server:
 npm run dev
 ```
 
-# Features
+## Features
 
 Add tasks
 Mark tasks as complete
