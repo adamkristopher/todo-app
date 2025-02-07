@@ -4,9 +4,9 @@
 
 -   PHP >= 8.1
 -   Composer
--   Node.js & NPM
+-   Node.js >= 18.0.0
+-   npm >= 9.0.0
 -   MariaDB
--   Laravel Valet (optional, for Mac users)
 
 1. Clone and Initial Setup
 
