@@ -113,7 +113,7 @@ php artisan cache:clear
 npm run dev
 ```
 
-# serve the application:
+# Serve the application:
 
 ```sh
 php artisan serve
