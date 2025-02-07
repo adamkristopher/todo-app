@@ -59,21 +59,32 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
+// State
 const todos = ref([]);
 const newTodo = ref("");
 const error = ref("");
 
-// Fetch all todos
+// Fetch todos
 const fetchTodos = async () => {
     try {
-        const response = await axios.get("/api/todos");
+        const response = await axios.get("/api/todos", {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                Accept: "application/json",
+                "X-CSRF-TOKEN": document.querySelector(
+                    'meta[name="csrf-token"]'
+                ).content,
+            },
+            withCredentials: true,
+        });
         todos.value = response.data;
     } catch (err) {
         error.value = "Failed to load todos";
+        console.error(err);
     }
 };
 
-// Add new todo
+// Add todo
 const addTodo = async () => {
     if (!newTodo.value.trim()) {
         error.value = "Please enter a todo description";
