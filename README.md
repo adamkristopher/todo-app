@@ -15,7 +15,7 @@ Laravel Valet (for Mac users)
 ## Clone the repository
 
 ```sh
-clone [https://github.com/adamkristopher/todo-app]
+clone https://github.com/adamkristopher/todo-app
 cd todo-app
 ```
 
@@ -86,10 +86,16 @@ DB_USERNAME=root
 DB_PASSWORD=your_password_here
 ```
 
+## Create Migration Table
+
+```sh
+php artisan migrate:install
+```
+
 ## Run migrations
 
 ```sh
-artisan migrate
+pbp artisan migrate
 ```
 
 ## Install NPM dependencies
