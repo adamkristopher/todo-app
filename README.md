@@ -1,81 +1,66 @@
-# Todo App
+# TODO APP SETUP INSTRUCTIONS
 
-A simple Todo application built with Laravel and Vue.js.
+## Prerequisites:
 
-## Prerequisites
+-   PHP >= 8.1
+-   Composer
+-   Node.js & NPM
+-   MariaDB
+-   Laravel Valet (optional, for Mac users)
 
-PHP >= 8.1
-Composer
-Node.js & NPM
-MariaDB
-Laravel Valet (for Mac users)
+1. Clone and Initial Setup
 
-# Installation Steps
-
-## Clone the repository
+---
 
 ```sh
-clone https://github.com/adamkristopher/todo-app
+git clone https://github.com/adamkristopher/todo-app
 cd todo-app
 ```
 
-## Install PHP dependencies
+# Install dependencies
 
 ```sh
 composer install
 ```
 
-## Set up environment file
+# Publish Sanctum configuration
 
 ```sh
-.env.example .env
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+```
+
+# Generate application key
+
+```sh
+php artisan key:generate
+
+cp .env.example .env
 php artisan key:generate
 ```
 
-# Set up MariaDB
+2. Database Setup
 
-## Start MariaDB service
+---
+
+# Start MariaDB
 
 ```sh
 brew services start mariadb
 ```
 
-## Secure MariaDB installation
-
-```sh
-sudo mysql_secure_installation
-```
-
-# Follow the prompts:
-
-## - Set root password
-
-## - Remove anonymous users (Y)
-
-## - Disallow root login remotely (Y)
-
-## - Remove test database (Y)
-
-## - Reload privilege tables (Y)
-
-## Create the database
-
-## Log into MariaDB
+# Create Database
 
 ```sh
 mysql -u root -p
-```
-
-## Enter your password when prompted
-
-## Create database
-
-```sh
 CREATE DATABASE todo_app;
 exit;
 ```
 
-## Update .env file with database credentials
+3. Environment Configuration
+
+---
+
+# Update .env file with these settings:
 
 ```sh
 DB_CONNECTION=mysql
@@ -83,57 +68,133 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=todo_app
 DB_USERNAME=root
-DB_PASSWORD=your_password_here
+DB_PASSWORD=root
+
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_DOMAIN=127.0.0.1
+SESSION_SECURE_COOKIE=false
+SESSION_SAME_SITE=lax
+APP_URL=http://127.0.0.1:8000
+SANCTUM_STATEFUL_DOMAINS=127.0.0.1:8000
 ```
 
-## Create Migration Table
+4. Setup Application
 
-```sh
-php artisan migrate:install
-```
+---
 
-## Run migrations
-
-```sh
-pbp artisan migrate
-```
-
-## Install NPM dependencies
+# Install NPM dependencies
 
 ```sh
 npm install
 ```
 
-## Start the development server
-
-## If using Valet
+# Run database migrations
 
 ```sh
-valet park #in directory where project is.
-valet link
+php artisan migrate
 ```
 
-## Or use Laravel's built-in server
+# Clear configuration cache
 
 ```sh
-php artisan serve
+php artisan config:clear
+php artisan route:clear
+php artisan cache:clear
 ```
 
-## Your application should now be accessible at:
+5. Start Development Servers
 
-Valet: http://todo-app.test
-Artisan serve: http://localhost:8000
+---
 
-## Development
-
-To start the Vite development server:
+# Start Vite development server
 
 ```sh
 npm run dev
 ```
 
-## Features
+# serve the application:
 
-Add tasks
-Mark tasks as complete
-Delete tasks
+```sh
+php artisan serve
+```
+
+6. Access the Application
+
+---
+
+http://127.0.0.1:8000
+
+7. Troubleshooting
+
+---
+
+If you encounter any issues:
+
+1. Make sure all services are running:
+
+    - MariaDB
+    - PHP
+    - Node/NPM
+
+2. Verify permissions:
+
+    - Storage directory is writable
+    - Bootstrap/cache directory is writable
+
+3. Clear all caches:
+
+```sh
+    php artisan config:clear
+    php artisan route:clear
+    php artisan cache:clear
+```
+
+4. Check logs:
+
+```sh
+    tail -f storage/logs/laravel.log
+```
+
+5. If authentication issues persist:
+    - Clear browser cookies and cache
+    - Ensure all Laravel Sanctum configurations are correct
+    - Verify session and CSRF token handling
+
+## Common Issues:
+
+1. Database connection fails:
+
+    - Verify MariaDB is running
+    - Check database credentials in .env
+    - Ensure database exists
+
+2. 401 Unauthorized errors:
+
+    - Clear browser cookies
+    - Verify CSRF token is being sent
+    - Check Sanctum configuration
+    - Ensure session is being maintained
+
+3. Asset compilation fails:
+    - Delete node_modules and reinstall
+    - Clear NPM cache
+    - Check for Node.js version compatibility
+
+## Required PHP Extensions:
+
+-   PHP >= 8.1
+-   BCMath PHP Extension
+-   Ctype PHP Extension
+-   JSON PHP Extension
+-   Mbstring PHP Extension
+-   OpenSSL PHP Extension
+-   PDO PHP Extension
+-   Tokenizer PHP Extension
+-   XML PHP Extension
+
+Note: After making any configuration changes, always clear config cache and restart the server.
+
+```
+
+```
